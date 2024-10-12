@@ -13,6 +13,7 @@ class ScreenBackground extends StatelessWidget {
     Size screenSize = MediaQuery.sizeOf(context);
 
     return Stack(
+
       children: [
         SvgPicture.asset(
           AssetsPath.backgroundSvg,
