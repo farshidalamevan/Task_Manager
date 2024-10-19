@@ -15,6 +15,7 @@ class _TaskManagerAppState extends State<TaskManagerApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        colorSchemeSeed: AppColors.themeColor,
           textTheme: TextTheme(),
           inputDecorationTheme: _inputDecorationTheme(),
           elevatedButtonTheme: _elevatedButtonThemeData()),
@@ -40,7 +41,8 @@ ElevatedButtonThemeData _elevatedButtonThemeData() {
 InputDecorationTheme _inputDecorationTheme() {
   return InputDecorationTheme(
     filled: true,
-    fillColor: Colors.blueGrey.shade100,
+    hintStyle: TextStyle(color: Colors.grey.shade500, fontWeight: FontWeight.w400),
+    fillColor: Colors.grey.shade300,
     border: _outlineInputBorder(),
     focusedBorder: _outlineInputBorder(),
     errorBorder: _outlineInputBorder(),

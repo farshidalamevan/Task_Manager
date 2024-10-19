@@ -1,18 +1,17 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/ui/screens/forget_password_email_address.dart';
-import 'package:task_manager/ui/screens/sign_up_screen.dart';
+import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/utils/app_colors.dart';
 import 'package:task_manager/ui/widgets/screen_background.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class ResetPasswordScreen extends StatefulWidget {
+  const ResetPasswordScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<ResetPasswordScreen> createState() => _ResetPasswordScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -27,28 +26,20 @@ class _SignInScreenState extends State<SignInScreen> {
             children: [
               const SizedBox(height: 80),
               Text(
-                'Get Started With',
+                'Set Password',
                 style: textTheme.headlineLarge
                     ?.copyWith(fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 20),
-              _buildSignInForm(),
+              const SizedBox(height: 8),
+              Text(
+                'Minimum number of password should be\n8 letters and numbers combination',
+                style: textTheme.bodyMedium?.copyWith(color: Colors.grey),
+              ),
               const SizedBox(height: 24),
+              _buildSetPasswordForm(),
+              const SizedBox(height: 32),
               Center(
-                child: Column(
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        _onTapForgetPassword();
-                      },
-                      child: Text(
-                        'Forget Password !',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                    ),
-                    _buildSignUpSection(),
-                  ],
-                ),
+                child: _buildHaveAccountSection(),
               ),
             ],
           ),
@@ -57,20 +48,19 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
-  Widget _buildSignInForm() {
+  Widget _buildSetPasswordForm() {
     return Column(
       children: [
         TextFormField(
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            hintText: 'Email',
-          ),
-        ),
-        const SizedBox(height: 12),
-        TextFormField(
-          obscureText: true,
           decoration: InputDecoration(
             hintText: 'Password',
+          ),
+        ),
+        const SizedBox(height: 10),
+        TextFormField(
+          keyboardType: TextInputType.emailAddress,
+          decoration: InputDecoration(
+            hintText: 'Confirm Password',
           ),
         ),
         const SizedBox(height: 16),
@@ -78,48 +68,52 @@ class _SignInScreenState extends State<SignInScreen> {
           onPressed: () {
             _onTapNextButton();
           },
-          child: Icon(Icons.chevron_right),
+          child: Text(
+            'Confirm',
+            style: TextStyle(fontSize: 16),
+          ),
         ),
       ],
     );
   }
 
-  Widget _buildSignUpSection() {
+  Widget _buildHaveAccountSection() {
     return RichText(
       text: TextSpan(
-        text: "Don't have an account?  ",
+        text: "Have account?  ",
         style: TextStyle(
+          fontWeight: FontWeight.bold,
           color: Colors.black,
           letterSpacing: 1,
         ),
         children: [
           TextSpan(
-              text: 'Sign up',
+              text: 'Sign In',
               style: TextStyle(
                   color: AppColors.themeColor,
                   letterSpacing: 1,
                   fontWeight: FontWeight.w800),
-              recognizer: TapGestureRecognizer()..onTap = _onTapSignup),
+              recognizer: TapGestureRecognizer()..onTap = _onTapSignIn),
         ],
       ),
     );
   }
 
-  void _onTapSignup() {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SignUpScreen(),
-      ),
-    );
-  }
-
-  void _onTapForgetPassword() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => ForgetPasswordEmailScreen()));
+  void _onTapSignIn() {
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SignInScreen(),
+        ),
+        (_) => false);
   }
 
   void _onTapNextButton() {
-    // TODO: implement on tap next/sign in button
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SignInScreen(),
+        ),
+        (_) => false);
   }
 }
