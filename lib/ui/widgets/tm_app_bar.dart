@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:task_manager/ui/screens/sign_in_screen.dart';
 import 'package:task_manager/ui/utils/app_colors.dart';
+import 'package:task_manager/ui/utils/assets_path.dart';
 
 class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
   const TMAppBar({
@@ -13,7 +15,7 @@ class TMAppBar extends StatelessWidget implements PreferredSizeWidget {
       backgroundColor: AppColors.themeColor,
       title: Row(
         children: [
-          CircleAvatar(backgroundColor: Colors.white, radius: 22),
+          CircleAvatar(backgroundColor: Colors.white, radius: 22, child: Icon(Icons.person),),
           const SizedBox(width: 10),
           Expanded(
             child: Column(
