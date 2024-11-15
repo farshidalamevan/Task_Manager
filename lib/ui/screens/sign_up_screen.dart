@@ -47,6 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         TextFormField(
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
+            suffixIcon: Icon(Icons.email_outlined),
             hintText: 'Email',
           ),
         ),
@@ -54,12 +55,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
         TextFormField(
           decoration: InputDecoration(
             hintText: 'First Name',
+            suffixIcon: Icon(Icons.person_2_outlined),
           ),
         ),
         const SizedBox(height: 10),
         TextFormField(
           decoration: InputDecoration(
             hintText: 'Last Name',
+            suffixIcon: Icon(Icons.person_2_outlined),
           ),
         ),
         const SizedBox(height: 10),
@@ -67,12 +70,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
           keyboardType: TextInputType.phone,
           decoration: InputDecoration(
             hintText: 'Mobile',
+            suffixIcon: Icon(Icons.phone),
           ),
         ),
         const SizedBox(height: 10),
         TextFormField(
           decoration: InputDecoration(
             hintText: 'Password',
+            suffixIcon: Icon(Icons.visibility_off_outlined),
           ),
         ),
         const SizedBox(height: 16),
