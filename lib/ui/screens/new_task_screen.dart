@@ -30,6 +30,10 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        shape: CircleBorder(),
+        backgroundColor: Colors.green.shade500,
+        foregroundColor: Colors.white,
+
         onPressed: _onTapAddFAB,
         child: Icon(Icons.add),
       ),
