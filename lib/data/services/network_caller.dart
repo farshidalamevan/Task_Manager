@@ -14,6 +14,7 @@ class NetworkCaller {
 
       if (response.statusCode == 200) {
         final decodeData = jsonDecode(response.body);
+
         return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
@@ -38,22 +39,24 @@ class NetworkCaller {
     try {
       Uri uri = Uri.parse(url);
       debugPrint(url);
-      final Response response = await post(uri,
-          body: jsonEncode(body),
-          headers: {'Content-Type':'application/json'});
+      final Response response = await post(
+        uri,
+        body: jsonEncode(body),
+        headers: {'Content-Type': 'application/json'},
+      );
       printResponse(url, response);
 
+      final decodeData = jsonDecode(response.body);
       if (response.statusCode == 200) {
-        final decodeData = jsonDecode(response.body);
         return NetworkResponse(
             isSuccess: true,
             statusCode: response.statusCode,
             responseData: decodeData);
       } else {
         return NetworkResponse(
-          isSuccess: false,
-          statusCode: response.statusCode,
-        );
+            isSuccess: false,
+            statusCode: response.statusCode,
+            errorMessage: decodeData['data']);
       }
     } catch (e) {
       return NetworkResponse(
@@ -63,6 +66,7 @@ class NetworkCaller {
       );
     }
   }
+
 
   static void printResponse(String url, Response response) {
     debugPrint(

@@ -131,6 +131,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             validator: (String? value) {
               if (value?.isEmpty ?? true) {
                 return 'Enter your password';
+
+              } if (value!.length <= 5 ){
+                return 'Enter a password minimum 6 characters';
               }
               return null;
             },
